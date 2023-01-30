@@ -1,0 +1,150 @@
+html, body {
+    width: 100%;
+    font-size: 16px;
+    background: url(photos/background1.png) no-repeat fixed;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    background: url(photos/background1.png) no-repeat fixed;
+    border-left: .5px solid rgb(85, 85, 85);
+    border-right: .5px solid rgb(85, 85, 85);
+}
+
+.container:hover {
+    cursor: pointer;
+    transition: background 1.5s ease-in-out ;
+    z-index: 1;
+    box-shadow: .5px .5px 1px 4px rgb(255, 255, 116);
+}
+
+.container img {
+    width: 50%;
+    height: 30%;
+    margin: 1rem 25% 1rem 25%;
+}
+
+.products {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 10%;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.product {
+    width: 25%;
+    min-height: 25rem;
+    padding: .5rem;
+    position: relative;
+    vertical-align: top;
+    float: left;
+    border: 1px solid #c6c6c6;
+    border-radius: .3em;
+    box-sizing: border-box;
+    background: white;
+    transition: background 1s ease-in-out ;
+}
+
+.product:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  background: rgb(203, 255, 240);
+  transition: background 1.5s ease-in-out ;
+  z-index: 1;
+  box-shadow: -2px 2px 4px rgb(253, 255, 135);
+}
+
+.product img {
+  max-width: 100%;
+  max-height: 15em;
+  
+}
+
+.title {
+  font-size: 1.2rem;
+}
+
+.price {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.form {
+    display: flex;
+    justify-content: space-around;
+   margin: 1rem 2rem 1rem 3rem;
+}
+
+.h5 {
+    margin-left: 42%;
+}
+
+.h5-txt {
+    font-weight: 650;
+}
+
+.user-button {
+    padding: 15px 25px;
+    margin: .5rem -1rem 1rem 9rem;
+    width: 200px;
+    height: 100px;
+    height: max-content;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: black;
+    font-weight: 600;
+    background: url(photos/background3.png) no-repeat;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px #999;
+}
+
+.user-button:hover { background: url(photos/background3.png) no-repeat}
+
+.user-button:active {
+    background: url(photos/background3.png) no-repeat;
+    box-shadow: 0 1px #666;
+    transform: translateY(4px);
+}
+
+.container-contact {
+    width: 100%;
+    height: 15%;
+    margin: 0 auto;
+    display: flex;
+    border-top: .01rem solid rgb(102, 102, 102);
+    background: rgb(222, 219, 209);
+}
+
+.container-contact p {
+    width: 40%;
+    padding-top: .5rem;
+    padding-left: 1rem;
+}
+
+#brick {
+    width: 100px;
+    height: 8px;
+    background: #ffcc74;
+    position: relative;
+    cursor: pointer;
+}
+
+#path {
+    outline: 1px solid #797979;
+    width: 100%;
+    height: 8px;
+}

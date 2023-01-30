@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Buyings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/buyings.css"/>
+    <script src="https://js.cx/libs/animate.js"></script>
+</head>
+<body>
+<div class="container">
+    <h5 class="text-center">Ваш акаунт</h5>
+    <div class="button-container">
+        <a sec:authorize="!isAuthenticated()" href="/login">
+            <button class="login-button">Увійти</button>
+        </a>
+        <a sec:authorize="!isAuthenticated()" href="/sign-up">
+            <button class="sign-button">Зареєструватися</button>
+        </a>
+        <a href="/logout" sec:authorize="isAuthenticated()">
+            <button class="login-button">Вийти</button>
+        </a>
+        <a sec:authorize="isAuthenticated()" sec:authentication="name" class="login-button"> </a>
+    </div>
+    <hr class="line">
+    <h5 class="text-center">Товари</h5>
+
+    <div th:each="goods: ${all}" class="product" sec:authorize="!hasAuthority('ADMIN')">
+        <div class="text-center">
+            <form action="/buyings-user" method="GET">
+                <img th:src="'data:image/png;base64,' + ${goods.decodedPhoto}" th:if="${goods.decodedPhoto !=null}"
+                     alt="Red dot">
+                <h3 class="title" th:text="'Good name: ' + ${goods.goodsName}"/>
+                <h3 class="price" th:text="'Good price: ' + ${goods.goodsPrise}"/>
+                <h3 class="description" th:text="'About: ' + ${goods.aboutGoods}"/>
+                <input type="hidden" name="goodsId" th:value="${goods.id}">
+                <button type="submit" class="btn btn-success">Придбати</button>
+                <br/>
+            </form>
+        </div>
+    </div>
+
+    <div th:each="goods: ${all}" class="product" sec:authorize="hasAuthority('ADMIN')">
+        <div class="text-center">
+            <form action="/admin-goods" method="POST">
+                <img th:src="'data:image/png;base64,' + ${goods.decodedPhoto}" th:if="${goods.decodedPhoto !=null}"
+                     alt="Red dot">
+                <h3 class="title" th:text="'Good name: ' + ${goods.goodsName}"/>
+                <h3 class="price" th:text="'Good price: ' + ${goods.goodsPrise}"/>
+                <h3 class="description" th:text="'About: ' + ${goods.aboutGoods}"/>
+                <input type="hidden" name="goodsId" th:value="${goods.id}">
+                <button type="submit" class="btn btn-success">Видалити даний товар</button>
+                <br/>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+<footer>
+    <div id="path">
+        <div id="brick"></div>
+    </div>
+
+    <script>
+        function makeEaseOut(timing) {
+            return function (timeFraction) {
+                return 1 - timing(1 - timeFraction);
+            }
+        }
+
+        function bounce(timeFraction) {
+            for (let a = 0, b = 1; 1; a += b, b /= 2) {
+                if (timeFraction >= (7 - 4 * a) / 11) {
+                    return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+                }
+            }
+        }
+
+        let bounceEaseOut = makeEaseOut(bounce);
+
+        brick.onclick = function () {
+            animate({
+                duration: 3000,
+                timing: bounceEaseOut,
+                draw: function (progress) {
+                    brick.style.left = progress * 1419 + 'px';
+                }
+            });
+        };
+    </script>
+
+    <div class="container-contact">
+        <p><b>Контакти:</b> <br> e-mail: online_shop@gmail.com <br> телефон: +380951234567</p>
+    </div>
+</footer>
+</html>
